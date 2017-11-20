@@ -3,7 +3,11 @@ class TasksController < ApplicationController
   before_action :require_user_logged_in, only: [:index, :show]
 
   def index
-    @tasks = Task.all.page(params[:page]).per(3)
+    if logged_in?
+      @user = current_user
+      @micropost = current_user.microposts.build
+      @microposts = current_user.microposts.order('created_at DESC').page(params[:page])
+    end
   end
   
    
