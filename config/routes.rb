@@ -11,6 +11,5 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   
   resources :users, only: [:index, :show, :new, :create, :destroy]
-  resources :tasks
-  resources :microposts, only: [:create, :destroy]
+  resources :task
 end
