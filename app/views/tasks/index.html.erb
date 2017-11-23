@@ -17,28 +17,28 @@
           <td><%= task.status %></td>
           <td><%= task.content %></td>
         </tr>
-      <% end %>
+       <% end %>
+ <% end %>
       
-      
-     <% if logged_in? %>
+<% if logged_in? %> 
+ <div class="row">
+  <aside class="col-md-4">
+  <%= form_for(@task) do |f| %>
+   <div class="form-group">
+    <%= f.text_area :content, class: 'form-control', rows: 5 %>
+   </div>
+    <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+<% end %> 
+  </aside>
+ <div class="col-xs-8">
+ </div>
+</div>
+<% if logged_in? %>
        <p>ログイン完了ユーザ: <%= current_user.name %></p>
-      　　　 <div class="row">
-   　　　 <aside class="col-md-4">
-     　　　 <%= form_for(@micropost) do |f| %>
-       　　　 <div class="form-group">
-        　　　  <%= f.text_area :content, class: 'form-control', rows: 5 %>
-       　　　 </div>
-       　　　 <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
-     　　　 <% end %>
-   　　　 </aside>
-  　　　  <div class="col-xs-8">
-   　<%= render 'tasks/tasks', tasks: @tasks %>
-   　　　 </div>
-  　　　</div>
        <% else %>
        <div class="center jumbotron">
         <div class="text-center">
-          <h1>Welcome to the Microposts</h1>
+          <h1>Welcome to the Tasks</h1>
           <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
         </div>
        </div>
@@ -52,4 +52,3 @@
 <% end %>
 
 <%= link_to '新規タスクの投稿', new_task_path, class: "btn btn-primary" %>
-

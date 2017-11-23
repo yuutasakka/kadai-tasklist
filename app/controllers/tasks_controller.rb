@@ -4,10 +4,11 @@ class TasksController < ApplicationController
   before_action :correct_user, only: [:edit, :destroy]
 
   def index
-    if logged_in?
+     if logged_in?
       @user = current_user
-    
-    end
+      @task = current_user.tasks.build
+      @tasks = current_user.tasks.order('created_at DESC').page(params[:page])
+     end
   end
   
   def show
